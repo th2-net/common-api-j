@@ -1,0 +1,53 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.21'
+    id 'java'
+    id 'java-library'
+    id 'maven-publish'
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+group = 'com.exactpro.th2'
+version = release_version
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+ext {
+    sharedDir = file("${project.rootDir}/shared")
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
+
+dependencies {
+    api platform("com.exactpro.th2:bom:4.0.1")
+
+    annotationProcessor 'com.google.auto.service:auto-service:1.0.1'
+    compileOnly 'com.google.auto.service:auto-service:1.0.1'
+
+    implementation "com.fasterxml.jackson.core:jackson-annotations"
+    implementation 'io.github.microutils:kotlin-logging:3.0.0'
+
+    implementation "commons-cli:commons-cli"
+}
+
+test {
+    useJUnitPlatform()
+}
