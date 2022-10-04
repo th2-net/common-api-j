@@ -15,6 +15,8 @@
 
 package com.exactpro.th2.common;
 
+import com.exactpro.th2.common.schema.configuration.Configuration;
+
 import java.util.Set;
 
 /**
@@ -38,7 +40,7 @@ public interface ModuleFactory {
     /**
      * @return Set of supported configuration classes.
      */
-    Set<Class<?>> getConfigurationClasses();
+    Set<Class<? extends Configuration>> getConfigurationClasses();
 
     /**
      * Creates an object of desirable module class
@@ -58,5 +60,5 @@ public interface ModuleFactory {
      * @param <C>                   desirable class template parameter
      * @return instance of desirable class
      */
-    <C> C loadConfiguration(ConfigurationProvider configurationProvider, Class<C> aClass);
+    <C extends Configuration> C loadConfiguration(ConfigurationProvider configurationProvider, Class<C> aClass);
 }

@@ -15,6 +15,8 @@
 
 package com.exactpro.th2.common
 
+import com.exactpro.th2.common.schema.configuration.Configuration
+
 /**
  * This interface is used to read or load configurations.
  * Each implementation of it uses a different method or data source.
@@ -28,5 +30,5 @@ interface ConfigurationProvider {
      * @param cfgClass configuration class which will contain the read data
      * @return instance of desired class with read data
      */
-    fun <C> loadConfiguration(configId: String, cfgClass: Class<out C>): C
+    fun <C: Configuration> loadConfiguration(configId: String, cfgClass: Class<out C>): C
 }

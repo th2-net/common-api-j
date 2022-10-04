@@ -37,7 +37,7 @@ interface ConfigurationProviderFactory {
      *
      * To get an array of arguments, use method [parseCommandLine]
      */
-    fun initProvider(args: Array<String>): ConfigurationProvider
+    fun createProvider(args: Array<String>): ConfigurationProvider
 
     /**
      * To parse command line arguments using the apache.commons.cli library,
