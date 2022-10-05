@@ -21,5 +21,5 @@ import com.exactpro.th2.common.schema.configuration.Configuration
  * Marker interface for module
  */
 interface Module {
-    fun <C : Configuration> loadConfiguration(clazz: Class<C>): C
+    fun <C : Configuration> loadConfiguration(configurationProvider: ConfigurationProvider, clazz: Class<C>): C
 }
