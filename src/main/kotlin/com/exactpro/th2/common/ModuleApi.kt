@@ -15,25 +15,15 @@
 
 package com.exactpro.th2.common
 
-import com.exactpro.th2.common.schema.configuration.Configuration
-
 /**
  * This interface is a *Facade* to make it easier to work
  * with a dynamic structure of configurations and modules.
- *
- * The method names speak for themselves.
- * Pass the desired class and get its instance.
  */
 interface ModuleApi {
 
-    // todo add <out Module> constraint
     /**
      * Creates an instance of module of desirable class.
      */
-    fun <M> loadModule(clazz: Class<M>): M
+    fun <M : Module> loadModule(clazz: Class<M>): M
 
-    /**
-     * Creates an instance of configuration of desirable class.
-     */
-    fun <C : Configuration> loadConfiguration(clazz: Class<C>): C
 }

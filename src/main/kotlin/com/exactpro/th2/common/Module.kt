@@ -15,7 +15,11 @@
 
 package com.exactpro.th2.common
 
+import com.exactpro.th2.common.schema.configuration.Configuration
+
 /**
  * Marker interface for module
  */
-interface Module
+interface Module {
+    fun <C : Configuration> loadConfiguration(clazz: Class<C>): C
+}

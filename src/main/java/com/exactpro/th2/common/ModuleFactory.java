@@ -15,50 +15,30 @@
 
 package com.exactpro.th2.common;
 
-import com.exactpro.th2.common.schema.configuration.Configuration;
-
-import java.util.Set;
 
 /**
  * <p>
  * This is the key interface for working with modules.
- * It allows you to dynamically load objects of specified classes: modules or configurations.
+ * It allows you to dynamically load objects of specific module class.
  * After passing the desired class, the factory will instantiate it using the passed {@link ConfigurationProvider}.
  * </p>
  * <p>
- * Each factory supports a limited number of classes.
- * To understand which classes are supported, methods
- * {@link #getModuleClasses()} and {@link #getConfigurationClasses()} are used
+ * To understand what class is supported, method
+ * {@link #getModuleClass()} is used
  * </p>
  */
 public interface ModuleFactory {
     /**
-     * @return Set of supported module classes.
+     * @return Class of supported module class.
      */
-    Set<Class<?>> getModuleClasses();
-
-    /**
-     * @return Set of supported configuration classes.
-     */
-    Set<Class<? extends Configuration>> getConfigurationClasses();
+    <M extends Module> Class<M> getModuleClass();
 
     /**
      * Creates an object of desirable module class
      *
      * @param configurationProvider the provider that will be used to read the configurations needed to instantiate the module
-     * @param aClass                class that the factory going to instantiate
-     * @param <M>                   desirable class template parameter
      * @return instance of desirable class
      */
-    <M> M loadModule(ConfigurationProvider configurationProvider, Class<M> aClass);
+    <M extends Module> M loadModule(ConfigurationProvider configurationProvider);
 
-    /**
-     * Creates an object of desirable configuration class
-     *
-     * @param configurationProvider the provider that will be used to read the configuration
-     * @param aClass                class that the factory going to instantiate
-     * @param <C>                   desirable class template parameter
-     * @return instance of desirable class
-     */
-    <C extends Configuration> C loadConfiguration(ConfigurationProvider configurationProvider, Class<C> aClass);
 }
