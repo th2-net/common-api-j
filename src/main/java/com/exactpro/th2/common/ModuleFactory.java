@@ -31,7 +31,7 @@ public interface ModuleFactory {
     /**
      * @return Class of supported module class.
      */
-    <M extends Module> Class<M> getModuleClass();
+    Class<?> getModuleClass();
 
     /**
      * Creates an object of desirable module class
