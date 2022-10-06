@@ -94,7 +94,9 @@ publishing {
         }
     }
     repositories {
-        mavenLocal()
+        mavenLocal() {
+            name = 'localRepo'
+        }
 //Nexus repo to publish from gitlab
         maven {
             name = 'nexusRepository'
