@@ -12,10 +12,6 @@ targetCompatibility = 11
 group = 'com.exactpro.th2'
 version = release_version
 
-ext {
-    sharedDir = file("${project.rootDir}/shared")
-}
-
 repositories {
     mavenCentral()
     maven {
@@ -98,10 +94,7 @@ publishing {
         }
     }
     repositories {
-        maven {
-            name = 'localRepo'
-            url = sharedDir
-        }
+        mavenLocal()
 //Nexus repo to publish from gitlab
         maven {
             name = 'nexusRepository'
@@ -123,15 +116,8 @@ nexusPublishing {
     }
 }
 
-clean {
-    delete sharedDir
-}
-
 dependencies {
     api platform("com.exactpro.th2:bom:4.0.1")
-
-    annotationProcessor 'com.google.auto.service:auto-service:1.0.1'
-    compileOnly 'com.google.auto.service:auto-service:1.0.1'
 
     implementation "com.fasterxml.jackson.core:jackson-annotations"
     implementation 'io.github.microutils:kotlin-logging:3.0.0'

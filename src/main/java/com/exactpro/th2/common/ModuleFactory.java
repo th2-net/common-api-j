@@ -24,14 +24,14 @@ package com.exactpro.th2.common;
  * </p>
  * <p>
  * To understand what class is supported, method
- * {@link #getModuleClass()} is used
+ * {@link #getModuleType()} is used
  * </p>
  */
 public interface ModuleFactory {
     /**
      * @return Class of supported module class.
      */
-    Class<?> getModuleClass();
+    Class<? extends Module> getModuleType();
 
     /**
      * Creates an object of desirable module class
@@ -39,6 +39,6 @@ public interface ModuleFactory {
      * @param configurationProvider the provider that will be used to read the configurations needed to instantiate the module
      * @return instance of desirable class
      */
-    <M extends Module> M loadModule(ConfigurationProvider configurationProvider);
+    Module create(ConfigurationProvider configurationProvider);
 
 }

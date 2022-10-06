@@ -15,9 +15,6 @@
 
 package com.exactpro.th2.common
 
-import org.apache.commons.cli.CommandLine
-import org.apache.commons.cli.Options
-
 /**
  * The factory creates an instance of the [ConfigurationProvider] with the specified parameters.
  *
@@ -35,27 +32,15 @@ interface ConfigurationProviderFactory {
      * Method for instantiating a [ConfigurationProvider] using parameters.
      * Each factory implementation can have its own arguments
      *
-     * To get an array of arguments, use method [parseCommandLine]
+     * To get an array of arguments, use method [parseArguments]
      */
-    fun createProvider(args: Array<String>): ConfigurationProvider
+    fun create(args: Array<String>): ConfigurationProvider
 
     /**
-     * To parse command line arguments using the apache.commons.cli library,
-     * you must add possible arguments to the [Options] object.
-     * Otherwise, the parser will encounter unknown arguments and throw an exception.
-     *
-     * Since each factory has its own arguments,
-     * this is method for adding arguments to [Options].
-     */
-    fun addOwnOptionsToCmd(options: Options)
-
-    /**
+     * The factory is responsible for selecting the required parameters from the whole list.
      * This method allows you to parse the command line object
      * to get the right parameters in the right order.
-     *
-     * Make sure you called [addOwnOptionsToCmd] before parsing [CommandLine] object.
-     * An exception will be thrown otherwise.
      */
-    fun parseCommandLine(cmd: CommandLine): Array<String>
+    fun parseArguments(args: Array<String>): Array<String>
 
 }
