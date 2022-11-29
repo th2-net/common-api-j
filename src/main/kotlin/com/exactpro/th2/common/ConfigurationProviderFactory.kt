@@ -15,6 +15,8 @@
 
 package com.exactpro.th2.common
 
+import com.exactpro.th2.common.schema.configuration.ConfigurationProviderConfig
+
 /**
  * The factory creates an instance of the [ConfigurationProvider] with the specified parameters.
  *
@@ -29,18 +31,15 @@ interface ConfigurationProviderFactory {
     val type: Class<out ConfigurationProvider>
 
     /**
-     * Method for instantiating a [ConfigurationProvider] using parameters.
-     * Each factory implementation can have its own arguments
-     *
-     * To get an array of arguments, use method [parseArguments]
+     * Method for creating empty object, that will be filled with
+     * required settings for specific implementation.
      */
-    fun create(args: Array<String>): ConfigurationProvider
+    fun settings(): ConfigurationProviderConfig
 
     /**
-     * The factory is responsible for selecting the required parameters from the whole list.
-     * This method allows you to parse the command line object
-     * to get the right parameters in the right order.
+     * Method for instantiating a [ConfigurationProvider] using config.
+     * Each factory implementation can have its own settings.
      */
-    fun parseArguments(args: Array<String>): Array<String>
+    fun create(config: ConfigurationProviderConfig): ConfigurationProvider
 
 }
