@@ -31,10 +31,9 @@ interface ConfigurationProviderFactory {
     val type: Class<out ConfigurationProvider>
 
     /**
-     * Method for creating empty object, that will be filled with
-     * required settings for specific implementation.
+     * Class that holds configuration for the provider implementation.
      */
-    fun settings(): ConfigurationProviderConfig
+    val configClass: Class<out ConfigurationProviderConfig>
 
     /**
      * Method for instantiating a [ConfigurationProvider] using config.

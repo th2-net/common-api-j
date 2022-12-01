@@ -17,7 +17,7 @@ package com.exactpro.th2.common
 
 /**
  * This interface is a *Facade* to make it easier to work
- * with a dynamic structure of configurations and modules.
+ * with a dynamic structure of modules.
  */
 interface ModuleApi {
 
